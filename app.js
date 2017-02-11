@@ -9,14 +9,16 @@ var sql = require('mysql');
 
 var connection = sql.createConnection({
     host: 'localhost',
-    user: 'qwerty',
-    password: 'pawanyadav',
-    database: 'dtuapp'
+    user: 'rahulyadav574',
+    password: '',
+    database: 'nodedb'
 });
 
 connection.connect(function (err) {
     if(err){console.log('error in db');}
-    console.log('connected to db');
+    else {
+        console.log('connected to db');
+    }
 });
 
 http.listen(process.env.PORT ||3000);
@@ -24,17 +26,15 @@ http.listen(process.env.PORT ||3000);
 
 
 function serverHandler(req,res) {
-    var filePath = 'index.html';
+
 
     if (req.url == '/') {
-        filePath = 'index.html';
-    }else if(req.url =='/patient'){
-        filePath = "patient.html";
+        filePath = "public/index.html";
     }
 
     
 
-    fs.readFile(filePath,function (err, data){
+    fs.readFile('index.html',function (err, data){
         res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
         res.write(data);
         res.end();
@@ -43,30 +43,27 @@ function serverHandler(req,res) {
 }
 
 
+
 io.on('connection',function (socket) {
+
+    socket.on('newp',function (data) {
+        io.emit('new_order','hello');
+    });
+
+    
+    console.log('hiii');
 
     socket.on('update',function (data) {
         console.log(data);
         socket.emit('info','Hey You Have to take a right....');
     });
 
-    socket.on('send_message',function(data){
-        console.log(data);
-        socket.emit('receive_message','hello');
-    });
 
-    socket.on('menu_request',function (data) {
-        console.log('table number ',data,'requested for menu...');
-        socket.emit('menu_response',menu);
-    });
 
     socket.on('send_order',function (data) {
-        io.emit('new_order',data);
+        
         console.log(data);
         console.log('data');
-
-
-
       
         //here,we have got a new order process it...
     });
@@ -80,4 +77,6 @@ io.on('connection',function (socket) {
         io.emit('order_done',data);
         console.log(data);
     });
+
+
 });
