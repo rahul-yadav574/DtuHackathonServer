@@ -11,42 +11,141 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #formid{
+            text-align: center;
+        }
+
+        #textarea{
+            text-align: left;
+            height: 300px;
+            width: 45%;
+            box-sizing: border-box;
+            -moz-text-size-adjust: 16;
+            text-
+        }
+        #med{
+            position: absolute;
+            left: 50px;
+        }
+        #test{
+            left: 300px;
+        }
+    </style>
 </head>
 <body>
-<p>Name: Pawan Yadav</p>
-<p>Age: 21</p>
-<p>Gender: Male</p>
+<div class="container">
+    <div class="jumbotron">
+        <p>Patient Name: Pawan Yadav</p>
+        <p>Age: 21</p>
+        <p>Gender: Male</p>
+    </div>
+</div>
 
-<button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
+<center><button id="myBtn" class="btn btn-primary">Open medical history</button></center>
+<p>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="purchaseLabel">Purchase</h4>
+</p>
+<form method="post" action="/user" id="formid">
+    <div class="row" >
+        <p id="med">Medicines</p>
+        <p id="test">Diagnosis details</p>
+    </div>
+    <div class="row">
+        <input type="text" name="medicine" id="textarea" placeholder="Medicines">
+        <input type="text" name="medicine" id="textarea" placeholder="Prescription details">
+    </div>
+    <p>
+
+    </p>
+    <input type="submit">
+</form>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">Date</div>
+                <div class="col-sm-3">hospital</div>
+                <div class="col-sm-3">medicines</div>
             </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-*-*"></div>
-                        <div class="col-*-*"></div>
-                        <div class="col-*-*"></div>
-                    </div>
-                    <div class="row">
-                        ...
-                    </div>
-                </div>
+            <div class="row">
+                <div class="col-sm-3"><a href="patientdetails1.html">01/01/16</a></div>
+                <div class="col-sm-3">fortis</div>
+                <div class="col-sm-3">x,y,z</div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Purchase</button>
+            <div class="row">
+                <div class="col-sm-3"><a href="patientdetails1.html">01/01/16</a></div>
+                <div class="col-sm-3">aiims</div>
+                <div class="col-sm-3">x,y,z</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"><a href="patientdetails1.html">01/01/16</a></div>
+                <div class="col-sm-3">medanta</div>
+                <div class="col-sm-3">x,y,z</div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    var modal = document.getElementById('myModal');
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
