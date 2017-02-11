@@ -28,10 +28,12 @@ function serverHandler(req,res) {
 
     if (req.url == '/') {
         filePath = 'index.html';
-    }else if(req.url =='/patient.html'){
+    } else if (req.url == '/patient.html') {
         filePath = "patient.html";
-      
     }
+    else if (req.url == '/details1.html') {
+        filePath = "details1.html"
+        }
 
 
     fs.readFile(filePath,function (err, data){
