@@ -30,6 +30,7 @@ function serverHandler(req,res) {
         filePath = 'index.html';
     }else if(req.url =='/patient'){
         filePath = "patient.html";
+        console.log('hii');
     }
 
     
