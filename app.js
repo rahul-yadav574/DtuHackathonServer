@@ -25,18 +25,27 @@ http.listen(process.env.PORT ||3000);
 
 function serverHandler(req,res) {
     var filePath = 'index.html';
-
-    if (req.url == '/') {
+    //var filePath;
+    if (req.url == '/index.html') {
         filePath = 'public/index.html';
     }else if(req.url =='/patient.html'){
+        //console.log("patient.hyml reacbhk");
         filePath = "patient.html";
-        console.log('hii');
+    }
+    else if(req.url == '/details1.html'){
+        filePath = "details1.html";
+    }
+    else if(req.url == '/details2.html'){
+        filePath = "details2.html";
+    }
+    else if(req.url == '/details3.html'){
+        filePath = "details3.html";
     }
 
     console.log(filePath);
 
     fs.readFile(filePath,function (err, data){
-        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+        res.writeHead(200, {'Content-Type': 'text/html','Content-Length': data.length});
         res.write(data);
         res.end();
     });
