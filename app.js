@@ -27,13 +27,13 @@ function serverHandler(req,res) {
     var filePath = 'index.html';
 
     if (req.url == '/') {
-        filePath = 'index.html';
-    }else if(req.url =='/patient'){
+        filePath = 'public/index.html';
+    }else if(req.url =='/patient.html'){
         filePath = "patient.html";
         console.log('hii');
     }
 
-    
+    console.log(filePath);
 
     fs.readFile(filePath,function (err, data){
         res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
