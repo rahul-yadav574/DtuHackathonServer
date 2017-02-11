@@ -2,7 +2,34 @@
 
 <html>
 <head>
-    <title>Bootstrap Modal</title>
+    <title>Patients Details...</title>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+
+
+
+        var socket = io();
+
+        socket.emit('your_turn','aa jaoq');
+
+
+        function sendnotification() {
+            var frm  = document.getElementById('formid');
+            var data = {
+                medicine: frm.elements[0].value,
+                pres: frm.elements[1].value
+            };
+
+            socket.emit('final_call',data);
+            alert('Successfully alloted....');
+
+        }
+
+
+
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -11,16 +38,6 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-    <script>
-        function sendnotification() {
-            var frm  = document.getElementById('formid');
-            var data = {
-                medicine: frm.elements[0].value,
-                diagdetail: frm.elements[1].value
-            };
-
-        }
-    </script>
     <style>
         .modal {
             display: none; /* Hidden by default */
@@ -68,6 +85,7 @@
             width: 45%;
             box-sizing: border-box;
             -moz-text-size-adjust: 16;
+            text-
         }
         #med{
             position: absolute;
@@ -91,16 +109,18 @@
 <p>
 
 </p>
-<form method="post" action=" " id="formid">
+<form method="post"  id="formid">
     <div class="row" >
         <p id="med">Medicines</p>
         <p id="test">Diagnosis details</p>
     </div>
     <div class="row">
         <input type="text" name="medicine" id="textarea" placeholder="Medicines">
-        <input type="text" name="diagdetail" id="textarea" placeholder="Prescription details">
+        <input type="text" name="medicine" id="textarea" placeholder="Prescription details">
     </div>
-    <p></p>
+    <p>
+
+    </p>
     <input type="submit" onclick="sendnotification()">
 </form>
 <!-- The Modal -->
@@ -116,17 +136,17 @@
                 <div class="col-sm-3">medicines</div>
             </div>
             <div class="row">
-                <div class="col-sm-3"><a href="details1.html" target="_blank">01/01/16</a></div>
+                <div class="col-sm-3"><a href="patientdetails1.html">01/01/16</a></div>
                 <div class="col-sm-3">fortis</div>
                 <div class="col-sm-3">x,y,z</div>
             </div>
             <div class="row">
-                <div class="col-sm-3"><a href="deatils2.html">01/01/16</a></div>
+                <div class="col-sm-3"><a href="patientdetails1.html">01/01/16</a></div>
                 <div class="col-sm-3">aiims</div>
                 <div class="col-sm-3">x,y,z</div>
             </div>
             <div class="row">
-                <div class="col-sm-3"><a href="details3.html">01/01/16</a></div>
+                <div class="col-sm-3"><a href="patientdetails1.html">01/01/16</a></div>
                 <div class="col-sm-3">medanta</div>
                 <div class="col-sm-3">x,y,z</div>
             </div>

@@ -25,27 +25,17 @@ http.listen(process.env.PORT ||3000);
 
 function serverHandler(req,res) {
     var filePath = 'index.html';
-    //var filePath;
-    if (req.url == '/index.html') {
-        filePath = 'public/index.html';
+
+    if (req.url == '/') {
+        filePath = 'index.html';
     }else if(req.url =='/patient.html'){
-        //console.log("patient.hyml reacbhk");
         filePath = "patient.html";
-    }
-    else if(req.url == '/details1.html'){
-        filePath = "details1.html";
-    }
-    else if(req.url == '/details2.html'){
-        filePath = "details2.html";
-    }
-    else if(req.url == '/details3.html'){
-        filePath = "details3.html";
+      
     }
 
-    console.log(filePath);
 
     fs.readFile(filePath,function (err, data){
-        res.writeHead(200, {'Content-Type': 'text/html','Content-Length': data.length});
+        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
         res.write(data);
         res.end();
     });
@@ -60,9 +50,14 @@ io.on('connection',function (socket) {
         socket.emit('info','Hey You Have to take a right....');
     });
 
+    socket.on('your_turn',function (data) {
+        console.log('new turn');
+        io.emit('your_call','hiii');
+    });
+
     socket.on('send_message',function(data){
         console.log(data);
-        socket.emit('receive_message','hello');
+        io.emit('your_call');
     });
 
     socket.on('menu_request',function (data) {
@@ -70,15 +65,15 @@ io.on('connection',function (socket) {
         socket.emit('menu_response',menu);
     });
 
-    socket.on('send_order',function (data) {
+    socket.on('newp',function (data) {
         io.emit('new_order',data);
-        console.log(data);
-        console.log('data');
 
-
-
-      
         //here,we have got a new order process it...
+    });
+
+    socket.on('final_call',function (data) {
+        console.log(data);
+        io.emit('finally',data);
     });
 
     socket.on('user_payment_request',function (data) {
